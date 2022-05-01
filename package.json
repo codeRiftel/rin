@@ -1,0 +1,9 @@
+{
+    "name": "xyz.coderiftel.rin",
+    "version": "1.0.0",
+    "description": "string helper",
+    "displayName": "rin",
+    "author": {"name": "coderiftel"},
+    "hideInEditor": false,
+    "keywords": ["lightweight", "simple", "json", "helper", "coderiftel", "rin"]
+}
