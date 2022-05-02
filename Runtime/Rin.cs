@@ -13,7 +13,7 @@ namespace rin {
         public string Esc(string src) {
             var bad = false;
             for (int i = 0; i < what.Length; i++) {
-                bad = src.Contains(what[i]);
+                bad = src.IndexOf(what[i]) >= 0;
                 if (bad) break;
             }
 
@@ -51,6 +51,47 @@ namespace rin {
 
                 if (escape) builder.Append('\\');
                 builder.Append(target);
+            }
+
+            return builder.ToString();
+        }
+
+        public string Un(string src) {
+            builder.Clear();
+            for (int i = 0; i < src.Length; i++) {
+                if (src[i] != '\\' || i == src.Length - 1) builder.Append(src[i]); else {
+                    i++;
+                    switch (src[i]) {
+                        case '"':
+                            builder.Append('"');
+                            break;
+                        case '\\':
+                            builder.Append('\\');
+                            break;
+                        case '/':
+                            builder.Append('/');
+                            break;
+                        case 'b':
+                            builder.Append('\b');
+                            break;
+                        case 'f':
+                            builder.Append('\f');
+                            break;
+                        case 'n':
+                            builder.Append('\n');
+                            break;
+                        case 'r':
+                            builder.Append('\r');
+                            break;
+                        case 't':
+                            builder.Append('\t');
+                            break;
+                        default:
+                            builder.Append('\\');
+                            builder.Append(src[i]);
+                            break;
+                    }
+                }
             }
 
             return builder.ToString();
