@@ -107,6 +107,11 @@ namespace rin {
             return null;
         }
 
+        public static long? Long(string num) {
+            if (long.TryParse(num, out long res)) return res;
+            return null;
+        }
+
         public static float? Float(string num) {
             var style = NumberStyles.AllowDecimalPoint | NumberStyles.AllowExponent;
             style |= NumberStyles.AllowLeadingSign;
@@ -136,6 +141,10 @@ namespace rin {
         }
 
         public static string To(uint num) {
+            return num.ToString(CultureInfo.InvariantCulture);
+        }
+
+        public static string To(long num) {
             return num.ToString(CultureInfo.InvariantCulture);
         }
 
